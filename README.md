@@ -9,7 +9,7 @@
 | [原 Vul-RAG](https://github.com/KnowledgeRAG4LLMVulD/KnowledgeRAG4LLMVulD/tree/38aa707fdb6bf592f1ed7753e90af400d3b9dcd3) | `38aa707fdb6bf592f1ed7753e90af400d3b9dcd3` | `vulnerability knowledge/linux_kernel_CWE-787_knowledge.json` |
 | [RAG4SVD](https://github.com/hs-esslingen-it-security/RAG4SVD/tree/e67f8ded8f6f781d18ddb9d8356cfd07b90f4907) | `e67f8ded8f6f781d18ddb9d8356cfd07b90f4907` | `systems/vul-rag/add_vulnerability_knowledge/qwen2.5-coder-14b-instruct/linux_kernel_CWE-787_knowledge.json` |
 
-RAG4SVD 一行对应从 PairVul 训练数据重建的知识。Oracle 库由测试数据生成，适用于单独的诊断。两套仓库的根目录均有 MIT 许可证。使用时从上游固定提交取得知识 JSON，仓库中仅维护接入代码和验证说明。
+RAG4SVD 一行对应从 PairVul 训练数据重建的知识。Oracle 库由测试数据生成，适用于单独的诊断。两套仓库的根目录均有 MIT 许可证。[knowledge](knowledge/README.md) 提供两套 CWE-787 知识的文本字段。运行下方的代码检索实验时，从上游固定提交取得带源码字段的原始 JSON。
 
 ## 运行
 

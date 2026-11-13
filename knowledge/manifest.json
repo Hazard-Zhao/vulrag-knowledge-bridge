@@ -1,0 +1,14 @@
+{
+  "vulrag-original-cwe787.json": {
+    "entries": 187,
+    "upstream_commit": "38aa707fdb6bf592f1ed7753e90af400d3b9dcd3",
+    "upstream_sha256": "f7e7ddf5686805d555eab1fff6d226f23efea572ffcb73a23351ad0c794f0df6",
+    "sha256": "20247a83810a6803e18f2c074a29a82ba1ec10b6a410e44cc3e6a09247add7dd"
+  },
+  "rag4svd-pairvul-qwen14b-cwe787.json": {
+    "entries": 187,
+    "upstream_commit": "e67f8ded8f6f781d18ddb9d8356cfd07b90f4907",
+    "upstream_sha256": "e2049a0ba0d67f7782de2cb14164013bbec0276b637d98df3862b6f453a47e15",
+    "sha256": "a4a1c59b02fb7b3a1910ed459463fde9e71d335ad1d2afc01080469a330e3d45"
+  }
+}
