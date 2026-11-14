@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "goal": "20 个独立 CVE，四类各 5；每个 CVE 只归一类，避免同漏洞近重复版本同时入集",
+  "status": "候选（provisional）：入选前须可追溯源码提交 + 对齐函数 + 完成输入重放；不足 5 记录缺口、不凑数",
+  "source_note": "PrimeVul/PairVul 冻结清单 = KnowledgeRAG4LLMVulD @ 38aa707（本机 vul-rag-pilot/data/expansion/raw/CWE-*_testset.json）；case 158 来自 RAG4SVD PrimeVul（单独来源）",
+  "replay_status_enum": ["replayed", "dev_fixture", "pending"],
+  "categories": [
+    {
+      "variant": "before",
+      "role": "原始漏洞版",
+      "expected_label": 1,
+      "cves": [
+        {"cve_id": "CVE-2022-1533", "pair_id": "rag4svd-rq2:primevul_CWE-787:158", "cwe": "CWE-787", "function": "mobi_decode_infl", "replay_status": "replayed"},
+        {"cve_id": "CVE-2020-10742", "pair_id": "pairvul:CWE-787:2409", "cwe": "CWE-787", "function": "ll_free_user_pages", "replay_status": "pending"},
+        {"cve_id": "CVE-2016-9755", "pair_id": "pairvul:CWE-787:1162", "cwe": "CWE-787", "function": "nf_ct_frag6_gather", "replay_status": "pending"},
+        {"cve_id": "CVE-2015-5327", "pair_id": "pairvul:CWE-125:776", "cwe": "CWE-125", "function": "x509_decode_time", "replay_status": "pending"},
+        {"cve_id": "CVE-2017-8067", "pair_id": "pairvul:CWE-787:1541", "cwe": "CWE-787", "function": "put_chars", "replay_status": "pending"}
+      ]
+    },
+    {
+      "variant": "after",
+      "role": "对应有效修复版",
+      "expected_label": 0,
+      "cves": [
+        {"cve_id": "CVE-2022-20369", "pair_id": "pairvul:CWE-787:3349", "cwe": "CWE-787", "function": "v4l2_m2m_dqbuf", "replay_status": "pending"},
+        {"cve_id": "CVE-2020-25212", "pair_id": "pairvul:CWE-787:2578", "cwe": "CWE-787", "function": "_nfs4_get_security_label", "replay_status": "pending"},
+        {"cve_id": "CVE-2022-2991", "pair_id": "pairvul:CWE-787:3540", "cwe": "CWE-787", "function": "nvme_ns_ioctl", "replay_status": "pending"},
+        {"cve_id": "CVE-2021-4093", "pair_id": "pairvul:CWE-787:3131", "cwe": "CWE-787", "function": "kvm_sev_es_string_io", "replay_status": "pending"},
+        {"cve_id": "CVE-2023-3090", "pair_id": "pairvul:CWE-787:3990", "cwe": "CWE-787", "function": "ipvlan_process_v4_outbound", "replay_status": "pending"}
+      ]
+    },
+    {
+      "variant": "ineffective-01",
+      "role": "有保护语句但仍可触发（无效保护）",
+      "expected_label": 1,
+      "cves": [
+        {"cve_id": "CVE-2021-37576", "pair_id": "pairvul:CWE-787:3058", "cwe": "CWE-787", "function": "kvmppc_rtas_hcall", "replay_status": "replayed"},
+        {"cve_id": "CVE-2019-19332", "pair_id": "pairvul:CWE-787:2191", "cwe": "CWE-787", "function": "do_cpuid_func", "replay_status": "dev_fixture"},
+        {"cve_id": "CVE-2017-16912", "pair_id": "pairvul:CWE-125:1349", "cwe": "CWE-125", "function": "get_pipe", "replay_status": "pending"},
+        {"cve_id": "CVE-2019-0149", "pair_id": "pairvul:CWE-20:1880", "cwe": "CWE-20", "function": "i40e_vc_config_queues_msg", "replay_status": "pending"},
+        {"cve_id": "CVE-2013-4587", "pair_id": "pairvul:CWE-20:332", "cwe": "CWE-20", "function": "kvm_vm_ioctl_create_vcpu", "replay_status": "pending"}
+      ]
+    },
+    {
+      "variant": "equivalent-01",
+      "role": "功能等价且有效的替代修复",
+      "expected_label": 0,
+      "cves": [
+        {"cve_id": "CVE-2014-7825", "pair_id": "pairvul:CWE-125:589", "cwe": "CWE-125", "function": "ftrace_syscall_exit", "replay_status": "pending"},
+        {"cve_id": "CVE-2013-1772", "pair_id": "pairvul:CWE-119:171", "cwe": "CWE-119", "function": "console_unlock", "replay_status": "pending"},
+        {"cve_id": "CVE-2020-28915", "pair_id": "pairvul:CWE-125:2660", "cwe": "CWE-125", "function": "fbcon_get_font", "replay_status": "pending"},
+        {"cve_id": "CVE-2021-38201", "pair_id": "pairvul:CWE-119:3075", "cwe": "CWE-119", "function": "xdr_set_page_base", "replay_status": "pending"},
+        {"cve_id": "CVE-2016-9083", "pair_id": "pairvul:CWE-119:1137", "cwe": "CWE-119", "function": "vfio_pci_ioctl", "replay_status": "pending"}
+      ]
+    }
+  ]
+}

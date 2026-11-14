@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "pair_id": "pairvul:CWE-125:1349",
+  "cve_id": "CVE-2017-16912",
+  "cwe": "CWE-125",
+  "function": "get_pipe",
+  "upstream_repo": "https://github.com/torvalds/linux (drivers/usb/usbip/stub_rx.c)",
+  "before_commit": "pre-fix vulnerable state: get_pipe() lacks the epnum range check (before v4.14.8/4.9.71/4.4.114)",
+  "after_commit": "usbip: fix stub_rx: get_pipe() to validate endpoint number (mainline c6688ef9f297…, hash 待核实)",
+  "EP_ARRAY": 16,
+  "variants": ["before", "after", "ineffective-01", "equivalent-01"],
+  "cases": [
+    {
+      "id": "epnum-15",
+      "epnum": 15,
+      "note": "ep_in[15] (last valid index); masked index stays in-bounds"
+    },
+    {
+      "id": "epnum-16",
+      "epnum": 16,
+      "note": "ep_in[16] (first OOB index); the boundary that the >16 guard misses"
+    },
+    {
+      "id": "epnum-17",
+      "epnum": 17,
+      "note": "ep_in[17] (second OOB index); rejected by every variant except before"
+    }
+  ]
+}
