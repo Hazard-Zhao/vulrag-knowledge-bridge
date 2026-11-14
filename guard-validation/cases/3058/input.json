@@ -8,7 +8,7 @@
   "before_commit": "8e591cb7204739efa8e15967ea334eb367039dde (bug introduced); vulnerable state before the fix",
   "after_commit": "f62f3c20647ebd5fb6ecb8f0b477b9281c44c10a",
   "ARRAY_SIZE_args": 16,
-  "variants": ["before", "after", "ineffective"],
+  "variants": ["before", "after", "ineffective-01", "equivalent-01"],
   "cases": [
     {
       "id": "nargs-15",

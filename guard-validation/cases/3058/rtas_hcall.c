@@ -129,10 +129,11 @@ static void test_handler(struct kvm_vcpu *vcpu, struct rtas_args *args) {
 #include "before.c"
 #include "after.c"
 #include "ineffective.c"
+#include "equivalent.c"
 
 int main(int argc, char **argv) {
     if (argc != 3) {
-        fprintf(stderr, "usage: %s <variant:before|after|ineffective> <nargs>\n", argv[0]);
+        fprintf(stderr, "usage: %s <variant:before|after|ineffective-01|equivalent-01> <nargs>\n", argv[0]);
         return 2;
     }
     const char *variant = argv[1];
@@ -141,7 +142,8 @@ int main(int argc, char **argv) {
     int (*fn)(struct kvm_vcpu *) = NULL;
     if (strcmp(variant, "before") == 0) fn = kvmppc_rtas_hcall_before;
     else if (strcmp(variant, "after") == 0) fn = kvmppc_rtas_hcall_after;
-    else if (strcmp(variant, "ineffective") == 0) fn = kvmppc_rtas_hcall_ineffective;
+    else if (strcmp(variant, "ineffective-01") == 0) fn = kvmppc_rtas_hcall_ineffective;
+    else if (strcmp(variant, "equivalent-01") == 0) fn = kvmppc_rtas_hcall_equivalent;
     else { fprintf(stderr, "unknown variant: %s\n", variant); return 2; }
 
     /* minimal vcpu + one matching RTAS token */

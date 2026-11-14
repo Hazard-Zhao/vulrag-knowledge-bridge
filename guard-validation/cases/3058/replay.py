@@ -28,8 +28,13 @@ COMPILER = ROOT / "tools" / "tcc" / "tcc.exe"
 HARNESS = CASE_DIR / "rtas_hcall.c"
 LOG_DIR = CASE_DIR / "logs"
 
-VARIANTS = [("before", "before.c"), ("after", "after.c"), ("ineffective", "ineffective.c")]
-EXPECTED = {"before": True, "after": False, "ineffective": True}
+VARIANTS = [
+    ("before", "before.c"),
+    ("after", "after.c"),
+    ("ineffective-01", "ineffective.c"),
+    ("equivalent-01", "equivalent.c"),
+]
+EXPECTED = {"before": True, "after": False, "ineffective-01": True, "equivalent-01": False}
 
 
 def digest(path):
@@ -144,7 +149,7 @@ def run():
             "log_path": str(log.relative_to(ROOT)),
             "log_sha256": digest(log),
             "observations": observations,
-            "notes": "ARRAY_SIZE(args.args)==16. nargs==16 places rets at args.args[16] (first OOB index). The ineffective variant changes >= to > and misses exactly this equality case.",
+            "notes": "ARRAY_SIZE(args.args)==16. nargs==16 places rets at args.args[16] (first OOB index). ineffective-01 changes >= to > and misses this equality case; equivalent-01 rewrites >= as > ARRAY_SIZE-1 and still rejects nargs==16.",
             "created_at": datetime.now(timezone.utc).isoformat(),
         })
 
