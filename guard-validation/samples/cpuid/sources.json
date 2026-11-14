@@ -1,0 +1,14 @@
+[
+  {
+    "label": "before",
+    "revision": "3525d0ccd92c760d22b8ee26f484fb7e9941c99c",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/3525d0ccd92c760d22b8ee26f484fb7e9941c99c/arch/x86/kvm/cpuid.c",
+    "sha256": "b2c08c92480438550458332f3e685d4305fa46a0c042d31938878dbd293dfbee"
+  },
+  {
+    "label": "after",
+    "revision": "433f4ba1904100da65a311033f17a9bf586b287e",
+    "url": "https://raw.githubusercontent.com/torvalds/linux/433f4ba1904100da65a311033f17a9bf586b287e/arch/x86/kvm/cpuid.c",
+    "sha256": "fff9dc183388dbadd8e9fd84faa793be72bf01296264fde0116967c8a98be0c9"
+  }
+]

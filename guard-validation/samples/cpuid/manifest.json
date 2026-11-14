@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "pair_id": "local-dev:cpuid:CVE-2019-19332",
+  "cve_id": "CVE-2019-19332",
+  "cwe": "CWE-787",
+  "provenance": "Existing corrected real_context fixtures; not R1AS identification. Local dev self-check sample, not part of the formal evaluation set.",
+  "expected_label_note": "expected_violation=true means the variant should show an out-of-bounds write under the recorded inputs; the label is used only for local acceptance and is never injected into the model prompt.",
+  "samples": [
+    {
+      "sample_id": "local-dev:cpuid:CVE-2019-19332:original",
+      "pair_id": "local-dev:cpuid:CVE-2019-19332",
+      "variant": "original",
+      "role": "原始漏洞版本",
+      "code_path": "samples/cpuid/V0_harness.c",
+      "code_sha256": "97fb8e2818d81bb59fd64122c26e0ec20804ac8a1dd9c58760cb5458dca02993",
+      "expected_violation": true,
+      "source_commit": "3525d0ccd92c760d22b8ee26f484fb7e9941c99c",
+      "scope": "corrected current-entry pointer; emulated CPUID path; logical capacity 4, allocation 5 with slot 4 as sentinel"
+    },
+    {
+      "sample_id": "local-dev:cpuid:CVE-2019-19332:developer_fix",
+      "pair_id": "local-dev:cpuid:CVE-2019-19332",
+      "variant": "developer_fix",
+      "role": "上游真实修复",
+      "code_path": "samples/cpuid/V1_harness.c",
+      "code_sha256": "3ec82b82f199d8b1661405edcca998e187fe687c1c5333dd98d34abdba0b04b4",
+      "expected_violation": false,
+      "source_commit": "3525d0ccd92c760d22b8ee26f484fb7e9941c99c",
+      "scope": "corrected current-entry pointer; emulated CPUID path; logical capacity 4"
+    },
+    {
+      "sample_id": "local-dev:cpuid:CVE-2019-19332:equivalent-01",
+      "pair_id": "local-dev:cpuid:CVE-2019-19332",
+      "variant": "equivalent-01",
+      "role": "等价条件改写",
+      "code_path": "samples/cpuid/V2_harness.c",
+      "code_sha256": "50e58e03e787a17e810c29c3a54727b6885d3116cfe566bb274bae2bd6abea02",
+      "expected_violation": false,
+      "source_commit": "3525d0ccd92c760d22b8ee26f484fb7e9941c99c",
+      "scope": "corrected current-entry pointer; emulated CPUID path; logical capacity 4"
+    },
+    {
+      "sample_id": "local-dev:cpuid:CVE-2019-19332:caller-01",
+      "pair_id": "local-dev:cpuid:CVE-2019-19332",
+      "variant": "caller-01",
+      "role": "调用方提前检查",
+      "code_path": "samples/cpuid/V3_harness.c",
+      "code_sha256": "23425ea999b7f0d19877127e650e0e65ca8e53fde1f1882bf0b2d99efaf51400",
+      "expected_violation": false,
+      "source_commit": "3525d0ccd92c760d22b8ee26f484fb7e9941c99c",
+      "scope": "corrected current-entry pointer; emulated CPUID path; logical capacity 4"
+    },
+    {
+      "sample_id": "local-dev:cpuid:CVE-2019-19332:ineffective-01",
+      "pair_id": "local-dev:cpuid:CVE-2019-19332",
+      "variant": "ineffective-01",
+      "role": "无效保护：>= 错改为 >，等号边界仍触发",
+      "code_path": "samples/cpuid/V4_harness.c",
+      "code_sha256": "e675c5864614e8d9934e649e3413e84e83bc6696d1e38e2a48391c6ae2fb6311",
+      "expected_violation": true,
+      "source_commit": "3525d0ccd92c760d22b8ee26f484fb7e9941c99c",
+      "scope": "corrected current-entry pointer; emulated CPUID path; logical capacity 4"
+    }
+  ],
+  "files": {
+    "after_cpuid.c": "fff9dc183388dbadd8e9fd84faa793be72bf01296264fde0116967c8a98be0c9",
+    "before_cpuid.c": "b2c08c92480438550458332f3e685d4305fa46a0c042d31938878dbd293dfbee",
+    "sources.json": "122b42f87caf7a4d7d8cb8762376cc8afc5ace3f87af456a75d669d4dfcefd5e",
+    "V0_harness.c": "97fb8e2818d81bb59fd64122c26e0ec20804ac8a1dd9c58760cb5458dca02993",
+    "V1_harness.c": "3ec82b82f199d8b1661405edcca998e187fe687c1c5333dd98d34abdba0b04b4",
+    "V2_harness.c": "50e58e03e787a17e810c29c3a54727b6885d3116cfe566bb274bae2bd6abea02",
+    "V3_harness.c": "23425ea999b7f0d19877127e650e0e65ca8e53fde1f1882bf0b2d99efaf51400",
+    "V4_harness.c": "e675c5864614e8d9934e649e3413e84e83bc6696d1e38e2a48391c6ae2fb6311"
+  }
+}

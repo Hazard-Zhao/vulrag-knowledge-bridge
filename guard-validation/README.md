@@ -30,8 +30,10 @@
 ```
 guard-validation/
   README.md
+  validate.py                # 本地编译/重放/取证脚本，纯标准库，不调用模型
   samples/
-    manifest.template.json   # 样本清单模板：五版变体、角色、代码哈希、预期标签
+    manifest.template.json   # 新样本清单模板：五版变体、角色、代码哈希、预期标签
+    cpuid/                   # 已接入的开发自检样本（CVE-2019-19332，五版桩 + 来源记录）
   evidence.template.jsonl    # 证据记录模板（一行一条）
   results/<run_id>/          # 编译产物、日志、evidence.jsonl、report.json（已 gitignore）
   tools/                     # 便携编译器等本地工具二进制（已 gitignore，不入库）
@@ -46,8 +48,10 @@ guard-validation/
 
 ## 本地运行（自检样本）
 
+脚本只依赖 Python 标准库；准备一个 Python 3.11+ 解释器和 `tools/tcc` 便携编译器后：
+
 ```powershell
-& .\.venv\Scripts\python.exe -X utf8 validate.py
+python -X utf8 validate.py
 ```
 
-每次运行生成独立 `results/<run_id>/`，含环境与工具哈希、编译/执行日志、逐输入观察、`evidence.jsonl` 和 `report.json`。退出码非零表示验证未通过。
+每次运行生成独立 `results/<run_id>/`，含环境与工具哈希、编译/执行日志、逐输入观察、`evidence.jsonl` 和 `report.json`。退出码非零表示验证未通过。证据产出后，用根目录 `shared/validate_alignment.py` 与基线预测逐条对齐。

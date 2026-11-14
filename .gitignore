@@ -2,6 +2,7 @@
 /results/
 /guard-validation/results/
 /guard-validation/tools/
+/guard-validation/latest.json
 /.venv/
 /__pycache__/
 /.env

@@ -60,11 +60,16 @@ def read_jsonl(path):
     return rows, errors
 
 
+NULLABLE = {"run"}
+
+
 def check_row(row, required, kind, errors, warnings):
     prefix = f"{kind} sample_id={row.get('sample_id', '?')}"
     for field in required:
-        if field not in row or row[field] is None:
+        if field not in row:
             errors.append(f"{prefix}: missing required field '{field}'")
+        elif row[field] is None and field not in NULLABLE:
+            errors.append(f"{prefix}: required field '{field}' is null")
     pair_id = row.get("pair_id")
     if pair_id and not PAIR_RE.match(str(pair_id)):
         errors.append(f"{prefix}: pair_id format invalid: {pair_id}")
