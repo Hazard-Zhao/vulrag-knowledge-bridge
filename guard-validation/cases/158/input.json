@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "pair_id": "rag4svd-rq2:primevul_CWE-787:158",
+  "cve_id": "CVE-2022-1533",
+  "cwe": "CWE-787",
+  "function": "mobi_decode_infl",
+  "upstream_repo": "https://github.com/bfabiszewski/libmobi",
+  "before_commit": "afa8ce1cd73429b5c37c9f6c55252f3329d38de8",
+  "after_commit": "eafc415bc6067e72577f70d6dd5acbf057ce6e6f",
+  "INDX_INFLBUF_SIZEMAX": 500,
+  "rule_encoding": "hex bytes; 0x0b=position-set(-1), 0x03=delete/left, 0x58='X' data byte",
+  "cases": [
+    {
+      "id": "read",
+      "decoded_ascii": "A",
+      "canary_dec": 64,
+      "rule_hex": "0b0358",
+      "note": "canary '@' (0x40) != data byte 'X' (0x58): vulnerable version reads decoded[-1] in the mismatch check; patched version intercepts before the read."
+    },
+    {
+      "id": "write",
+      "decoded_ascii": "A",
+      "canary_dec": 88,
+      "rule_hex": "0b0358",
+      "note": "canary 'X' (0x58) == data byte: vulnerable version passes the mismatch check and memmove writes before the buffer (corrupts decoded[-1]); patched version still intercepts."
+    }
+  ]
+}

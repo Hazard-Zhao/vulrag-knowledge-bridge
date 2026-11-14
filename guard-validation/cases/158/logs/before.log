@@ -1,0 +1,10 @@
+BUILD
+
+EXECUTION read
+CASE=read VARIANT=before RET=1 DECODED_SIZE=1 CANARY_BEFORE=64 CANARY_AFTER=64 DECODED0=65
+[read/before] call: decoded='A' size=1 canary=0x40 rule=0x0b0358
+Character mismatch in A at pos: -1 (@ != X)
+
+EXECUTION write
+CASE=write VARIANT=before RET=0 DECODED_SIZE=0 CANARY_BEFORE=88 CANARY_AFTER=65 DECODED0=0
+[write/before] call: decoded='A' size=1 canary=0x58 rule=0x0b0358
