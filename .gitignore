@@ -8,6 +8,8 @@
 /.env
 *.exe
 *.log
-# PrimeVul 158 replay logs are a committed deliverable, not scratch output.
+# Replay logs are a committed deliverable, not scratch output.
 !guard-validation/cases/158/logs/
 !guard-validation/cases/158/logs/*.log
+!guard-validation/cases/3058/logs/
+!guard-validation/cases/3058/logs/*.log
