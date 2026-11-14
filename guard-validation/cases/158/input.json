@@ -23,6 +23,13 @@
       "canary_dec": 88,
       "rule_hex": "0b0358",
       "note": "canary 'X' (0x58) == data byte: vulnerable version passes the mismatch check and memmove writes before the buffer (corrupts decoded[-1]); patched version still intercepts."
+    },
+    {
+      "id": "insert-after-delete",
+      "decoded_ascii": "A",
+      "canary_dec": 88,
+      "rule_hex": "0b03580242",
+      "note": "after the delete byte 0x58 makes pos=-1 and passes (canary 'X' matches), 0x02 re-selects insert without changing dir (no pos reset), then 0x42='B' enters the insert branch with pos=-1: vulnerable version writes decoded[-1]='B'; patched version already returned at the delete-branch pos<0 check."
     }
   ]
 }

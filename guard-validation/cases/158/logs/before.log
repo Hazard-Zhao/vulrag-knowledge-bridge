@@ -8,3 +8,7 @@ Character mismatch in A at pos: -1 (@ != X)
 EXECUTION write
 CASE=write VARIANT=before RET=0 DECODED_SIZE=0 CANARY_BEFORE=88 CANARY_AFTER=65 DECODED0=0
 [write/before] call: decoded='A' size=1 canary=0x58 rule=0x0b0358
+
+EXECUTION insert-after-delete
+CASE=insert-after-delete VARIANT=before RET=0 DECODED_SIZE=1 CANARY_BEFORE=88 CANARY_AFTER=66 DECODED0=65
+[insert-after-delete/before] call: decoded='A' size=1 canary=0x58 rule=0x0b03580242
