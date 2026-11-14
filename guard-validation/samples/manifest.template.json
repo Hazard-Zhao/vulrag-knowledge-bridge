@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "pair_id": "local-dev:cpuid:CVE-2019-19332",
+  "cve_id": "CVE-2019-19332",
+  "cwe": "CWE-787",
+  "provenance": "开发自检样本；不是新的独立评估集，也未认定为截图中的 R1AS 样本",
+  "expected_label_note": "expected_violation=true 表示该变体在记录输入下应观察到越界写入；标签只用于本侧验收，不进入模型提示",
+  "samples": [
+    {
+      "sample_id": "local-dev:cpuid:CVE-2019-19332:original",
+      "pair_id": "local-dev:cpuid:CVE-2019-19332",
+      "variant": "original",
+      "role": "原始漏洞版本",
+      "code_path": "samples/cpuid/V0_harness.c",
+      "code_sha256": null,
+      "expected_violation": true,
+      "source_commit": "3525d0ccd92c760d22b8ee26f484fb7e9941c99c",
+      "scope": "纠正后的当前指针语义；模拟 CPUID 路径；逻辑容量 4，实际分配 5 条，第五条作哨兵"
+    },
+    {
+      "sample_id": "local-dev:cpuid:CVE-2019-19332:developer_fix",
+      "pair_id": "local-dev:cpuid:CVE-2019-19332",
+      "variant": "developer_fix",
+      "role": "上游真实修复",
+      "code_path": "samples/cpuid/V1_harness.c",
+      "code_sha256": null,
+      "expected_violation": false,
+      "source_commit": "3525d0ccd92c760d22b8ee26f484fb7e9941c99c",
+      "scope": "同 original"
+    },
+    {
+      "sample_id": "local-dev:cpuid:CVE-2019-19332:equivalent-01",
+      "pair_id": "local-dev:cpuid:CVE-2019-19332",
+      "variant": "equivalent-01",
+      "role": "等价条件改写",
+      "code_path": "samples/cpuid/V2_harness.c",
+      "code_sha256": null,
+      "expected_violation": false,
+      "source_commit": "3525d0ccd92c760d22b8ee26f484fb7e9941c99c",
+      "scope": "同 original"
+    },
+    {
+      "sample_id": "local-dev:cpuid:CVE-2019-19332:caller-01",
+      "pair_id": "local-dev:cpuid:CVE-2019-19332",
+      "variant": "caller-01",
+      "role": "调用方提前检查",
+      "code_path": "samples/cpuid/V3_harness.c",
+      "code_sha256": null,
+      "expected_violation": false,
+      "source_commit": "3525d0ccd92c760d22b8ee26f484fb7e9941c99c",
+      "scope": "同 original"
+    },
+    {
+      "sample_id": "local-dev:cpuid:CVE-2019-19332:ineffective-01",
+      "pair_id": "local-dev:cpuid:CVE-2019-19332",
+      "variant": "ineffective-01",
+      "role": "无效保护：>= 错改为 >，等号边界仍触发",
+      "code_path": "samples/cpuid/V4_harness.c",
+      "code_sha256": null,
+      "expected_violation": true,
+      "source_commit": "3525d0ccd92c760d22b8ee26f484fb7e9941c99c",
+      "scope": "同 original"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "updated_commit": "480292149154ebd5a13179afd1ec1da0b9cccc81",
+  "purpose": "Baseline predictions and guard-validation evidence join one sample at a time. This file is the single field contract for both branches; do not rename fields without bumping schema_version and updating both sides.",
+  "id_rules": {
+    "knowledge_id": {
+      "format": "<knowledge_file>@<commit>:<array_index>",
+      "example": "vulrag-original-cwe787@4802921:0",
+      "note": "The published JSON has 187 rows but only 107 distinct CVE ids; 34 CVE groups contain multiple records, so CVE alone is not a unique knowledge id. Array index is the 0-based position in the fixed file. Updating the knowledge file creates a new file version; old indexes must not be reused."
+    },
+    "pair_id": {
+      "format": "<dataset>:<bucket>:<record_id>",
+      "examples": [
+        "rag4svd-rq2:primevul_CWE-787:158",
+        "local-dev:cpuid:CVE-2019-19332"
+      ],
+      "note": "PrimeVul/RAG4SVD pairs use the upstream bucket and record id. Local dev fixtures use the local-dev prefix and must be registered separately; they are not part of the evaluation set."
+    },
+    "sample_id": {
+      "format": "<pair_id>:<variant>",
+      "examples": [
+        "rag4svd-rq2:primevul_CWE-787:158:before",
+        "rag4svd-rq2:primevul_CWE-787:158:after",
+        "rag4svd-rq2:primevul_CWE-787:158:ineffective-01"
+      ]
+    }
+  },
+  "enums": {
+    "variant": {
+      "before": "vulnerable version",
+      "after": "upstream patched version",
+      "ineffective-01": "derived guard that still violates (boundary condition weakened, e.g. >= changed to >)",
+      "equivalent-01": "derived guard that rewrites the same check equivalently",
+      "caller-01": "derived guard moved to the caller side",
+      "developer_fix": "local-fixture role name for the real upstream fix; register parent pair_id",
+      "original": "local-fixture role name for the vulnerable version; register parent pair_id"
+    },
+    "label": {
+      "1": "vulnerable (ground truth, kept in the evaluation manifest; never injected into the model prompt)",
+      "0": "safe"
+    },
+    "prediction": {
+      "1": "reported vulnerable",
+      "0": "reported safe",
+      "-1": "unresolved / early exit / unparsed; must not be counted as safe"
+    },
+    "evidence_status": {
+      "triggered": "violation observed on this version under the recorded inputs",
+      "not_triggered": "recorded inputs did not trigger; not equivalent to a general safety claim",
+      "inconclusive": "ran but observations are insufficient to judge",
+      "build_failed": "compilation / build failed",
+      "timeout": "execution timed out"
+    }
+  },
+  "prediction_record": {
+    "produced_by": "baseline-primevul side; the only side that calls the detection model",
+    "required": [
+      "run", "pair_id", "sample_id", "variant", "cve_id", "cwe",
+      "label", "prediction", "evaluated_knowledge_cves"
+    ],
+    "optional": [
+      "code_sha256", "knowledge_file_sha256", "method", "model",
+      "prompt_sha256", "config_sha256", "response_path", "created_at"
+    ],
+    "fields": {
+      "run": "integer repetition number, starting at 1",
+      "pair_id": "see id_rules.pair_id",
+      "sample_id": "see id_rules.sample_id",
+      "variant": "see enums.variant",
+      "cve_id": "CVE identifier associated with the pair",
+      "cwe": "CWE identifier associated with the pair",
+      "label": "ground-truth label, see enums.label",
+      "prediction": "model final result, see enums.prediction",
+      "evaluated_knowledge_cves": "CVE ids of the knowledge candidates actually evaluated by the model; may be shorter than the full retrieval list when early return fired",
+      "code_sha256": "SHA-256 of the exact code bytes fed to the model; if the model input is only the target function while the harness hash covers the whole stub, store a separate model-code hash and do not reuse the harness hash"
+    }
+  },
+  "evidence_record": {
+    "produced_by": "guard-validation side; no model/API calls on this side",
+    "required": [
+      "schema_version", "run", "run_id", "pair_id", "sample_id", "variant",
+      "cve_id", "cwe", "code_sha256", "evidence_id", "validation_method",
+      "command", "environment_digest", "source_commit", "tool_versions",
+      "status", "exit_code", "log_path", "log_sha256", "created_at"
+    ],
+    "optional": [
+      "execution_command", "observations", "derived_variant", "notes"
+    ],
+    "fields": {
+      "run": "joins the baseline repetition number; empty for standalone local-dev evidence",
+      "run_id": "evidence batch id, e.g. local-20261114T031538260706Z",
+      "evidence_id": "<run_id>:<variant>, unique within the run",
+      "validation_method": "what was actually checked, e.g. logical-capacity sentinel; not ASan and not full kernel execution",
+      "command": "build command argv",
+      "execution_command": "run command argv",
+      "environment_digest": "hash of the recorded environment.json",
+      "source_commit": "upstream revision the fixture was derived from",
+      "tool_versions": "compiler / toolchain version string",
+      "status": "see enums.evidence_status",
+      "exit_code": "process exit code or null on timeout",
+      "log_path": "repository-relative log path",
+      "log_sha256": "SHA-256 of the log bytes",
+      "observations": "per-input observations; keep the full grid, do not collapse to a single boolean"
+    }
+  },
+  "join": {
+    "keys": ["run", "pair_id", "sample_id", "code_sha256"],
+    "rules": [
+      "Predictions and evidence are matched on the join keys above.",
+      "Missing counterpart, differing code_sha256, or duplicated prediction/evidence rows must be reported explicitly; never silently drop or overwrite them.",
+      "One sample may have several evidence_id rows; do not compress them into one boolean.",
+      "not_triggered only means the recorded inputs did not trigger; it is not a general safety conclusion."
+    ]
+  },
+  "model_call_gate": {
+    "owner": "baseline-primevul side only",
+    "rules": [
+      "The guard side submits new samples or methods as a request list; the baseline side schedules the model calls so the same sample is not run twice.",
+      "run_id / run binds an immutable configuration: method, model, prompt, retrieval parameters, or data changes require a new run.",
+      "Dedup key at least: run, sample_id, code_sha256, method, model, prompt_sha256, config_sha256; multi-stage RAG also records stage, knowledge_id, and request-body hash.",
+      "Keys stay in environment variables or local hidden input; never commit them."
+    ]
+  }
+}

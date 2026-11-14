@@ -1,5 +1,9 @@
 /vendor/
 /results/
+/guard-validation/results/
+/guard-validation/tools/
 /.venv/
 /__pycache__/
 /.env
+*.exe
+*.log
