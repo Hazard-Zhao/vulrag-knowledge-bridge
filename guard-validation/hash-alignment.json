@@ -103,5 +103,26 @@
       "diff_note": "function renamed do_cpuid_func -> do_cpuid_func_after; body otherwise verbatim",
       "body_match_after_normalize": true
     }
+  },
+  {
+    "pair_id": "pairvul:CWE-20:332",
+    "cve_id": "CVE-2013-4587",
+    "cwe": "CWE-20",
+    "before": {
+      "original_snippet_sha256": "56293b624f75f960a6e146f7a24c673f477d684f2a90d34bd014f313b5b9bf31",
+      "extracted_file_sha256": "e54510baf1d2ccec298fd5dcbf8d43f94bd34fa2ec97399977e206864302c4dc",
+      "original_function_name": "kvm_vm_ioctl_create_vcpu",
+      "renamed_function_name": "kvm_vm_ioctl_create_vcpu_before",
+      "diff_note": "function renamed kvm_vm_ioctl_create_vcpu -> kvm_vm_ioctl_create_vcpu_before; body otherwise verbatim",
+      "body_match_after_normalize": true
+    },
+    "after": {
+      "original_snippet_sha256": "102c0e9244ba9eb5243fefe668bad0a74d6b59ab673bfc6be27108109144ed56",
+      "extracted_file_sha256": "7d99e0d7c0759cc3144880d4605d4e02df2b07a3977b2b2c7da7092da00df215",
+      "original_function_name": "kvm_vm_ioctl_create_vcpu",
+      "renamed_function_name": "kvm_vm_ioctl_create_vcpu_after",
+      "diff_note": "function renamed kvm_vm_ioctl_create_vcpu -> kvm_vm_ioctl_create_vcpu_after; body otherwise verbatim",
+      "body_match_after_normalize": true
+    }
   }
 ]

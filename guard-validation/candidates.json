@@ -84,11 +84,24 @@
         {"variant": "ineffective-01", "label": 1, "replay_status": "verified", "primary_inclusion": false},
         {"variant": "equivalent-01", "label": 0, "replay_status": "verified", "primary_inclusion": false}
       ]
+    },
+    {
+      "cve_id": "CVE-2013-4587",
+      "pair_id": "pairvul:CWE-20:332",
+      "cwe": "CWE-20",
+      "function": "kvm_vm_ioctl_create_vcpu",
+      "source": "PairVul (KnowledgeRAG4LLMVulD @ 38aa707)",
+      "replay_scope": "guard-only（id 上界校验；下游 vcpu_id 下标越界不在本单元重放）",
+      "samples": [
+        {"variant": "before", "label": 1, "replay_status": "verified", "primary_inclusion": true},
+        {"variant": "after", "label": 0, "replay_status": "verified", "primary_inclusion": false},
+        {"variant": "ineffective-01", "label": 1, "replay_status": "verified", "primary_inclusion": false},
+        {"variant": "equivalent-01", "label": 0, "replay_status": "verified", "primary_inclusion": false}
+      ]
     }
   ],
   "candidate_pool": [
     {"cve_id": "CVE-2019-0149", "pair_id": "pairvul:CWE-20:1880", "cwe": "CWE-20", "function": "i40e_vc_config_queues_msg", "fix_guard": "if (idx >= ARRAY_SIZE(vf->ch))", "status": "待筛"},
-    {"cve_id": "CVE-2013-4587", "pair_id": "pairvul:CWE-20:332", "cwe": "CWE-20", "function": "kvm_vm_ioctl_create_vcpu", "fix_guard": "if (id >= KVM_MAX_VCPUS)", "status": "待筛"},
     {"cve_id": "CVE-2013-1772", "pair_id": "pairvul:CWE-119:171", "cwe": "CWE-119", "function": "console_unlock", "fix_guard": "if (len+1 >= sizeof(text))", "status": "待筛"},
     {"cve_id": "CVE-2021-38201", "pair_id": "pairvul:CWE-119:3075", "cwe": "CWE-119", "function": "xdr_set_page_base", "fix_guard": "if (base >= maxlen)", "status": "待筛"},
     {"cve_id": "CVE-2016-9083", "pair_id": "pairvul:CWE-119:1137", "cwe": "CWE-119", "function": "vfio_pci_ioctl", "fix_guard": "if (hdr.start >= max || hdr.start + hdr.count > max)", "status": "待筛"},

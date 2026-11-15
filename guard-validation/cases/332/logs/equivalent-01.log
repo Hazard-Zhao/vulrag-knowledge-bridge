@@ -1,0 +1,13 @@
+BUILD
+
+EXECUTION id=3
+VARIANT=equivalent-01 ID=3 RET=0 ARCH_CREATE_CALLED=1 ARCH_CREATE_ID=3 GUARD_BYPASSED=0
+[equivalent-01/id=3] ret=0 arch_create_called=1 arch_create_id=3 guard_bypassed=0
+
+EXECUTION id=4
+VARIANT=equivalent-01 ID=4 RET=-22 ARCH_CREATE_CALLED=0 ARCH_CREATE_ID=-1 GUARD_BYPASSED=0
+[equivalent-01/id=4] ret=-22 arch_create_called=0 arch_create_id=-1 guard_bypassed=0
+
+EXECUTION id=5
+VARIANT=equivalent-01 ID=5 RET=-22 ARCH_CREATE_CALLED=0 ARCH_CREATE_ID=-1 GUARD_BYPASSED=0
+[equivalent-01/id=5] ret=-22 arch_create_called=0 arch_create_id=-1 guard_bypassed=0

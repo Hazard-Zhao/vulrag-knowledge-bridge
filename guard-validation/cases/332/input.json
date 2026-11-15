@@ -1,0 +1,16 @@
+{
+  "pair_id": "pairvul:CWE-20:332",
+  "cve_id": "CVE-2013-4587",
+  "cwe": ["CWE-20"],
+  "function": "kvm_vm_ioctl_create_vcpu",
+  "file": "virt/kvm/kvm_main.c",
+  "fix_commit_title": "KVM: create_vcpu: check id against KVM_MAX_VCPUS",
+  "before_commit": "upstream parent of the fix (traceable via the CVE-2013-4587 patch); exact hash pending verification",
+  "after_commit": "pending verification",
+  "guard_note": "The fix is an input-validation guard `if (id >= KVM_MAX_VCPUS) return -EINVAL;`. The downstream OOB (vcpu_id used as an array index elsewhere in KVM) is not reachable from this unit, so the harness observes whether kvm_arch_vcpu_create is called with an out-of-range id. KVM_MAX_VCPUS stubbed to 4 (upstream 1024).",
+  "cases": [
+    {"id": "valid-3", "vcpu_id": 3, "note": "id=3 < KVM_MAX_VCPUS=4: every variant proceeds to kvm_arch_vcpu_create"},
+    {"id": "boundary-4", "vcpu_id": 4, "note": "id=4 == KVM_MAX_VCPUS: before/ineffective proceed (guard bypassed), after/equivalent return -EINVAL"},
+    {"id": "over-5", "vcpu_id": 5, "note": "id=5 > KVM_MAX_VCPUS: only before proceeds; after/ineffective/equivalent reject"}
+  ]
+}

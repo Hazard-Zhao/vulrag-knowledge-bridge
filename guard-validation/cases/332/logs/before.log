@@ -1,0 +1,13 @@
+BUILD
+
+EXECUTION id=3
+VARIANT=before ID=3 RET=0 ARCH_CREATE_CALLED=1 ARCH_CREATE_ID=3 GUARD_BYPASSED=0
+[before/id=3] ret=0 arch_create_called=1 arch_create_id=3 guard_bypassed=0
+
+EXECUTION id=4
+VARIANT=before ID=4 RET=0 ARCH_CREATE_CALLED=1 ARCH_CREATE_ID=4 GUARD_BYPASSED=1
+[before/id=4] ret=0 arch_create_called=1 arch_create_id=4 guard_bypassed=1
+
+EXECUTION id=5
+VARIANT=before ID=5 RET=0 ARCH_CREATE_CALLED=1 ARCH_CREATE_ID=5 GUARD_BYPASSED=1
+[before/id=5] ret=0 arch_create_called=1 arch_create_id=5 guard_bypassed=1

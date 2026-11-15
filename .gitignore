@@ -21,3 +21,5 @@
 !guard-validation/cases/2660/logs/*.log
 !guard-validation/cases/2191/logs/
 !guard-validation/cases/2191/logs/*.log
+!guard-validation/cases/332/logs/
+!guard-validation/cases/332/logs/*.log
