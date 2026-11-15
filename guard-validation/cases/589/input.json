@@ -1,0 +1,17 @@
+{
+  "pair_id": "pairvul:CWE-125:589",
+  "cve_id": "CVE-2014-7825",
+  "cwe": ["CWE-125"],
+  "function": "ftrace_syscall_exit",
+  "file": "kernel/trace/trace_syscalls.c",
+  "fix_commit_title": "tracing/syscalls: Ignore numbers outside NR_syscalls' range",
+  "before_commit": "upstream parent of the fix (traceable via the CVE-2014-7825 patch); exact hash pending verification",
+  "after_commit": "tracing/syscalls: Ignore numbers outside NR_syscalls' range (exact hash pending verification)",
+  "nr_syscalls_note": "NR_syscalls shrunk to 16 for the local unit replay; the upper-bound logic is unchanged",
+  "cases": [
+    {"id": "neg-nr", "syscall_nr": -1, "note": "negative number: every variant intercepts at the lower-bound check, no array read"},
+    {"id": "valid-nr15", "syscall_nr": 15, "note": "largest valid index (NR_syscalls-1): every variant reads in-bounds"},
+    {"id": "oob-nr16", "syscall_nr": 16, "note": "first out-of-bounds index (== NR_syscalls): before/ineffective read OOB, after/equivalent intercept"},
+    {"id": "oob-nr17", "syscall_nr": 17, "note": "beyond NR_syscalls: before reads OOB, after/ineffective/equivalent intercept"}
+  ]
+}

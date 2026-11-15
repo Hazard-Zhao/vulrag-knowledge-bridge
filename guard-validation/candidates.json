@@ -45,13 +45,25 @@
         {"variant": "ineffective-01", "label": 1, "replay_status": "verified", "primary_inclusion": true},
         {"variant": "equivalent-01", "label": 0, "replay_status": "verified", "primary_inclusion": false}
       ]
+    },
+    {
+      "cve_id": "CVE-2014-7825",
+      "pair_id": "pairvul:CWE-125:589",
+      "cwe": "CWE-125",
+      "function": "ftrace_syscall_exit",
+      "source": "PairVul (KnowledgeRAG4LLMVulD @ 38aa707)",
+      "samples": [
+        {"variant": "before", "label": 1, "replay_status": "verified", "primary_inclusion": true},
+        {"variant": "after", "label": 0, "replay_status": "verified", "primary_inclusion": false},
+        {"variant": "ineffective-01", "label": 1, "replay_status": "verified", "primary_inclusion": false},
+        {"variant": "equivalent-01", "label": 0, "replay_status": "verified", "primary_inclusion": false}
+      ]
     }
   ],
   "candidate_pool": [
     {"cve_id": "CVE-2019-19332", "pair_id": "pairvul:CWE-787:2191", "cwe": "CWE-787", "function": "do_cpuid_func", "fix_guard": "if (*nent >= maxnent)", "status": "dev_fixture，待以冻结记录重建为 pairvul 口径"},
     {"cve_id": "CVE-2019-0149", "pair_id": "pairvul:CWE-20:1880", "cwe": "CWE-20", "function": "i40e_vc_config_queues_msg", "fix_guard": "if (idx >= ARRAY_SIZE(vf->ch))", "status": "待筛"},
     {"cve_id": "CVE-2013-4587", "pair_id": "pairvul:CWE-20:332", "cwe": "CWE-20", "function": "kvm_vm_ioctl_create_vcpu", "fix_guard": "if (id >= KVM_MAX_VCPUS)", "status": "待筛"},
-    {"cve_id": "CVE-2014-7825", "pair_id": "pairvul:CWE-125:589", "cwe": "CWE-125", "function": "ftrace_syscall_exit", "fix_guard": "if (syscall_nr < 0 || syscall_nr >= NR_syscalls)", "status": "待筛"},
     {"cve_id": "CVE-2013-1772", "pair_id": "pairvul:CWE-119:171", "cwe": "CWE-119", "function": "console_unlock", "fix_guard": "if (len+1 >= sizeof(text))", "status": "待筛"},
     {"cve_id": "CVE-2020-28915", "pair_id": "pairvul:CWE-125:2660", "cwe": "CWE-125", "function": "fbcon_get_font", "fix_guard": "if (charcount * j > FNTSIZE(fontdata))", "status": "待筛"},
     {"cve_id": "CVE-2021-38201", "pair_id": "pairvul:CWE-119:3075", "cwe": "CWE-119", "function": "xdr_set_page_base", "fix_guard": "if (base >= maxlen)", "status": "待筛"},
@@ -63,7 +75,7 @@
   ],
   "pending_verifications": [
     "get_pipe (1349) 源码已核对：before/after 与冻结记录 body_match=true；commit 标题已确认（usbip: fix stub_rx: get_pipe() to validate endpoint number），精确 hash 待 git 确认",
-    "code_sha256 联表口径：3058/1349 已产出 hash-alignment.json（联表键=原始代码片段 hash）；case 158 的联表键在 RAG4SVD 侧（队友 source_sha256=173edcd4…），需与基线对齐",
-    "results/ 是否入库：先核对其中是否含运行环境信息"
+    "code_sha256 联表口径：3058/1349/589 已产出 hash-alignment.json（联表键=原始代码片段 hash）；case 158 的联表键在 RAG4SVD 侧（队友 source_sha256=173edcd4…），需与基线对齐",
+    "results/ 是否入库：已核对——evidence.jsonl 的 command/execution_command 含绝对路径与用户名，results/ 留在本地归档不入库"
   ]
 }

@@ -1,0 +1,17 @@
+BUILD
+
+EXECUTION syscall_nr=-1
+VARIANT=before NR=-1 READ_OBSERVED=0 READ_INDEX=-1 OOB_READ=0 INTERCEPTED=1 CANARY_INTACT=1
+[before/nr=-1] read_observed=0 read_index=-1 oob_read=0 intercepted=1 canary_intact=1
+
+EXECUTION syscall_nr=15
+VARIANT=before NR=15 READ_OBSERVED=1 READ_INDEX=15 OOB_READ=0 INTERCEPTED=0 CANARY_INTACT=1
+[before/nr=15] read_observed=1 read_index=15 oob_read=0 intercepted=0 canary_intact=1
+
+EXECUTION syscall_nr=16
+VARIANT=before NR=16 READ_OBSERVED=1 READ_INDEX=16 OOB_READ=1 INTERCEPTED=0 CANARY_INTACT=1
+[before/nr=16] read_observed=1 read_index=16 oob_read=1 intercepted=0 canary_intact=1
+
+EXECUTION syscall_nr=17
+VARIANT=before NR=17 READ_OBSERVED=1 READ_INDEX=17 OOB_READ=1 INTERCEPTED=0 CANARY_INTACT=1
+[before/nr=17] read_observed=1 read_index=17 oob_read=1 intercepted=0 canary_intact=1

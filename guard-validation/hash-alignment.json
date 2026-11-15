@@ -40,5 +40,26 @@
       "diff_note": "function renamed get_pipe -> get_pipe_after; body otherwise verbatim",
       "body_match_after_normalize": true
     }
+  },
+  {
+    "pair_id": "pairvul:CWE-125:589",
+    "cve_id": "CVE-2014-7825",
+    "cwe": "CWE-125",
+    "before": {
+      "original_snippet_sha256": "68edaa4d1f3599974b35501168cd0e82a3040b43c404098db650772320dd8893",
+      "extracted_file_sha256": "295fecb3fdfe5a6bd4186482155f783f0533e912026761d49fd8356fb59193ab",
+      "original_function_name": "ftrace_syscall_exit",
+      "renamed_function_name": "ftrace_syscall_exit_before",
+      "diff_note": "function renamed ftrace_syscall_exit -> ftrace_syscall_exit_before; body otherwise verbatim",
+      "body_match_after_normalize": true
+    },
+    "after": {
+      "original_snippet_sha256": "7e660bd808874e099b1dde6c3b7c7e4bdac8f4d4f50772db0202716dced7fc3c",
+      "extracted_file_sha256": "66ba3b198e8a4bdd8cd8dd1622990567f2004dc2e52daf020f73531d7cc0b919",
+      "original_function_name": "ftrace_syscall_exit",
+      "renamed_function_name": "ftrace_syscall_exit_after",
+      "diff_note": "function renamed ftrace_syscall_exit -> ftrace_syscall_exit_after; body otherwise verbatim",
+      "body_match_after_normalize": true
+    }
   }
 ]
