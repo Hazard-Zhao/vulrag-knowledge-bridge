@@ -1,0 +1,44 @@
+[
+  {
+    "pair_id": "pairvul:CWE-787:3058",
+    "cve_id": "CVE-2021-37576",
+    "cwe": "CWE-787",
+    "before": {
+      "original_snippet_sha256": "e7f84167484741632afbc5a36fc7f4f177f98cfd5950bf3cfe58588a887e2017",
+      "extracted_file_sha256": "050c5c06f35fb5805470b0cc4b4f121f0071fe0d48147858708822cca3182ca4",
+      "original_function_name": "kvmppc_rtas_hcall",
+      "renamed_function_name": "kvmppc_rtas_hcall_before",
+      "diff_note": "function renamed kvmppc_rtas_hcall -> kvmppc_rtas_hcall_before; body otherwise verbatim",
+      "body_match_after_normalize": true
+    },
+    "after": {
+      "original_snippet_sha256": "ba4c79e0ecb4fe989d0b18be3dc58e4e657d5fe9e06e8c05f59663348b11c633",
+      "extracted_file_sha256": "c380bdb9b503ae5202f421d29e9f5d166d85accf9d151db32c8ca4da744c26c1",
+      "original_function_name": "kvmppc_rtas_hcall",
+      "renamed_function_name": "kvmppc_rtas_hcall_after",
+      "diff_note": "function renamed kvmppc_rtas_hcall -> kvmppc_rtas_hcall_after; body otherwise verbatim",
+      "body_match_after_normalize": true
+    }
+  },
+  {
+    "pair_id": "pairvul:CWE-125:1349",
+    "cve_id": "CVE-2017-16912",
+    "cwe": "CWE-125",
+    "before": {
+      "original_snippet_sha256": "81107a8ed8dd679fe26c0ae5b6897e86f44dff1c64fbf28611d1e6f082fc4b19",
+      "extracted_file_sha256": "36f86c58c3052c85689e1437651a2c31bdf332ee12e1361b2b3fda0fceb597cc",
+      "original_function_name": "get_pipe",
+      "renamed_function_name": "get_pipe_before",
+      "diff_note": "function renamed get_pipe -> get_pipe_before; body otherwise verbatim",
+      "body_match_after_normalize": true
+    },
+    "after": {
+      "original_snippet_sha256": "03f03ef5ef98e8a340b535807b7b9871d929797efde82cb9878bee2098cffb25",
+      "extracted_file_sha256": "0fe14ee494fefd2fb099e1eafcbf45ae8558f2a90b09af9b9c07bf3fcf9e487a",
+      "original_function_name": "get_pipe",
+      "renamed_function_name": "get_pipe_after",
+      "diff_note": "function renamed get_pipe -> get_pipe_after; body otherwise verbatim",
+      "body_match_after_normalize": true
+    }
+  }
+]
