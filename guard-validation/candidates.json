@@ -1,12 +1,24 @@
 {
   "schema_version": 1,
-  "decision_note": "数量目标「四类各5、20个独立CVE」已撤回：未经候选库核验，不设硬指标。改为按「可追溯提交 + 函数对齐 + 可重放」逐项筛候选并记录状态；不足/凑不出即记缺口，不凑数。",
+  "decision_note": "数量目标「四类各5、20个独立CVE」已撤回：未经候选库核验，不设硬指标。改为按「可追溯提交 + 函数对齐 + 可重放」逐项筛候选并记录状态；不足/凑不出即记缺口，不凑数。 剩余 8 个候选经逐项筛后判定无法干净重放，已记缺口（gaps.json），不凑数。",
   "category_semantics": "类别标在评估样本/版本（variant）上；CVE 仅作去重与统计分组键。同一 CVE 可保留多个变体在同一组内，只有满足入集条件的变体才计入对应类别。",
   "role_label": {
-    "before": {"role": "原始漏洞版", "label": 1},
-    "after": {"role": "对应有效修复版", "label": 0},
-    "ineffective-01": {"role": "无效保护（有保护语句仍触发）", "label": 1},
-    "equivalent-01": {"role": "等价替代修复", "label": 0}
+    "before": {
+      "role": "原始漏洞版",
+      "label": 1
+    },
+    "after": {
+      "role": "对应有效修复版",
+      "label": 0
+    },
+    "ineffective-01": {
+      "role": "无效保护（有保护语句仍触发）",
+      "label": 1
+    },
+    "equivalent-01": {
+      "role": "等价替代修复",
+      "label": 0
+    }
   },
   "verified": [
     {
@@ -16,8 +28,18 @@
       "function": "mobi_decode_infl",
       "source": "RAG4SVD PrimeVul (libmobi)",
       "samples": [
-        {"variant": "before", "label": 1, "replay_status": "verified", "primary_inclusion": true},
-        {"variant": "after", "label": 0, "replay_status": "verified", "primary_inclusion": false}
+        {
+          "variant": "before",
+          "label": 1,
+          "replay_status": "verified",
+          "primary_inclusion": true
+        },
+        {
+          "variant": "after",
+          "label": 0,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        }
       ]
     },
     {
@@ -27,10 +49,30 @@
       "function": "kvmppc_rtas_hcall",
       "source": "PairVul (KnowledgeRAG4LLMVulD @ 38aa707)",
       "samples": [
-        {"variant": "before", "label": 1, "replay_status": "verified", "primary_inclusion": false},
-        {"variant": "after", "label": 0, "replay_status": "verified", "primary_inclusion": false},
-        {"variant": "ineffective-01", "label": 1, "replay_status": "verified", "primary_inclusion": true},
-        {"variant": "equivalent-01", "label": 0, "replay_status": "verified", "primary_inclusion": false}
+        {
+          "variant": "before",
+          "label": 1,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        },
+        {
+          "variant": "after",
+          "label": 0,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        },
+        {
+          "variant": "ineffective-01",
+          "label": 1,
+          "replay_status": "verified",
+          "primary_inclusion": true
+        },
+        {
+          "variant": "equivalent-01",
+          "label": 0,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        }
       ]
     },
     {
@@ -40,10 +82,30 @@
       "function": "get_pipe",
       "source": "PairVul (KnowledgeRAG4LLMVulD @ 38aa707)",
       "samples": [
-        {"variant": "before", "label": 1, "replay_status": "verified", "primary_inclusion": false},
-        {"variant": "after", "label": 0, "replay_status": "verified", "primary_inclusion": false},
-        {"variant": "ineffective-01", "label": 1, "replay_status": "verified", "primary_inclusion": true},
-        {"variant": "equivalent-01", "label": 0, "replay_status": "verified", "primary_inclusion": false}
+        {
+          "variant": "before",
+          "label": 1,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        },
+        {
+          "variant": "after",
+          "label": 0,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        },
+        {
+          "variant": "ineffective-01",
+          "label": 1,
+          "replay_status": "verified",
+          "primary_inclusion": true
+        },
+        {
+          "variant": "equivalent-01",
+          "label": 0,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        }
       ]
     },
     {
@@ -53,10 +115,30 @@
       "function": "ftrace_syscall_exit",
       "source": "PairVul (KnowledgeRAG4LLMVulD @ 38aa707)",
       "samples": [
-        {"variant": "before", "label": 1, "replay_status": "verified", "primary_inclusion": true},
-        {"variant": "after", "label": 0, "replay_status": "verified", "primary_inclusion": false},
-        {"variant": "ineffective-01", "label": 1, "replay_status": "verified", "primary_inclusion": false},
-        {"variant": "equivalent-01", "label": 0, "replay_status": "verified", "primary_inclusion": false}
+        {
+          "variant": "before",
+          "label": 1,
+          "replay_status": "verified",
+          "primary_inclusion": true
+        },
+        {
+          "variant": "after",
+          "label": 0,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        },
+        {
+          "variant": "ineffective-01",
+          "label": 1,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        },
+        {
+          "variant": "equivalent-01",
+          "label": 0,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        }
       ]
     },
     {
@@ -66,10 +148,30 @@
       "function": "fbcon_get_font",
       "source": "PairVul (KnowledgeRAG4LLMVulD @ 38aa707)",
       "samples": [
-        {"variant": "before", "label": 1, "replay_status": "verified", "primary_inclusion": false},
-        {"variant": "after", "label": 0, "replay_status": "verified", "primary_inclusion": false},
-        {"variant": "ineffective-01", "label": 1, "replay_status": "verified", "primary_inclusion": true},
-        {"variant": "equivalent-01", "label": 0, "replay_status": "verified", "primary_inclusion": false}
+        {
+          "variant": "before",
+          "label": 1,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        },
+        {
+          "variant": "after",
+          "label": 0,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        },
+        {
+          "variant": "ineffective-01",
+          "label": 1,
+          "replay_status": "verified",
+          "primary_inclusion": true
+        },
+        {
+          "variant": "equivalent-01",
+          "label": 0,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        }
       ]
     },
     {
@@ -79,10 +181,30 @@
       "function": "do_cpuid_func",
       "source": "PairVul (KnowledgeRAG4LLMVulD @ 38aa707)",
       "samples": [
-        {"variant": "before", "label": 1, "replay_status": "verified", "primary_inclusion": true},
-        {"variant": "after", "label": 0, "replay_status": "verified", "primary_inclusion": false},
-        {"variant": "ineffective-01", "label": 1, "replay_status": "verified", "primary_inclusion": false},
-        {"variant": "equivalent-01", "label": 0, "replay_status": "verified", "primary_inclusion": false}
+        {
+          "variant": "before",
+          "label": 1,
+          "replay_status": "verified",
+          "primary_inclusion": true
+        },
+        {
+          "variant": "after",
+          "label": 0,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        },
+        {
+          "variant": "ineffective-01",
+          "label": 1,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        },
+        {
+          "variant": "equivalent-01",
+          "label": 0,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        }
       ]
     },
     {
@@ -93,22 +215,102 @@
       "source": "PairVul (KnowledgeRAG4LLMVulD @ 38aa707)",
       "replay_scope": "guard-only（id 上界校验；下游 vcpu_id 下标越界不在本单元重放）",
       "samples": [
-        {"variant": "before", "label": 1, "replay_status": "verified", "primary_inclusion": true},
-        {"variant": "after", "label": 0, "replay_status": "verified", "primary_inclusion": false},
-        {"variant": "ineffective-01", "label": 1, "replay_status": "verified", "primary_inclusion": false},
-        {"variant": "equivalent-01", "label": 0, "replay_status": "verified", "primary_inclusion": false}
+        {
+          "variant": "before",
+          "label": 1,
+          "replay_status": "verified",
+          "primary_inclusion": true
+        },
+        {
+          "variant": "after",
+          "label": 0,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        },
+        {
+          "variant": "ineffective-01",
+          "label": 1,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        },
+        {
+          "variant": "equivalent-01",
+          "label": 0,
+          "replay_status": "verified",
+          "primary_inclusion": false
+        }
       ]
     }
   ],
   "candidate_pool": [
-    {"cve_id": "CVE-2019-0149", "pair_id": "pairvul:CWE-20:1880", "cwe": "CWE-20", "function": "i40e_vc_config_queues_msg", "fix_guard": "if (idx >= ARRAY_SIZE(vf->ch))", "status": "待筛"},
-    {"cve_id": "CVE-2013-1772", "pair_id": "pairvul:CWE-119:171", "cwe": "CWE-119", "function": "console_unlock", "fix_guard": "if (len+1 >= sizeof(text))", "status": "待筛"},
-    {"cve_id": "CVE-2021-38201", "pair_id": "pairvul:CWE-119:3075", "cwe": "CWE-119", "function": "xdr_set_page_base", "fix_guard": "if (base >= maxlen)", "status": "待筛"},
-    {"cve_id": "CVE-2016-9083", "pair_id": "pairvul:CWE-119:1137", "cwe": "CWE-119", "function": "vfio_pci_ioctl", "fix_guard": "if (hdr.start >= max || hdr.start + hdr.count > max)", "status": "待筛"},
-    {"cve_id": "CVE-2020-10742", "pair_id": "pairvul:CWE-787:2409", "cwe": "CWE-787", "function": "ll_free_user_pages", "status": "待筛"},
-    {"cve_id": "CVE-2016-9755", "pair_id": "pairvul:CWE-787:1162", "cwe": "CWE-787", "function": "nf_ct_frag6_gather", "status": "待筛"},
-    {"cve_id": "CVE-2015-5327", "pair_id": "pairvul:CWE-125:776", "cwe": "CWE-125", "function": "x509_decode_time", "status": "待筛"},
-    {"cve_id": "CVE-2017-8067", "pair_id": "pairvul:CWE-787:1541", "cwe": "CWE-787", "function": "put_chars", "status": "待筛"}
+    {
+      "cve_id": "CVE-2019-0149",
+      "pair_id": "pairvul:CWE-20:1880",
+      "cwe": "CWE-20",
+      "function": "i40e_vc_config_queues_msg",
+      "fix_guard": "if (idx >= ARRAY_SIZE(vf->ch))",
+      "status": "gap",
+      "gap_reason_ref": "guard-validation/gaps.json"
+    },
+    {
+      "cve_id": "CVE-2013-1772",
+      "pair_id": "pairvul:CWE-119:171",
+      "cwe": "CWE-119",
+      "function": "console_unlock",
+      "fix_guard": "if (len+1 >= sizeof(text))",
+      "status": "gap",
+      "gap_reason_ref": "guard-validation/gaps.json"
+    },
+    {
+      "cve_id": "CVE-2021-38201",
+      "pair_id": "pairvul:CWE-119:3075",
+      "cwe": "CWE-119",
+      "function": "xdr_set_page_base",
+      "fix_guard": "if (base >= maxlen)",
+      "status": "gap",
+      "gap_reason_ref": "guard-validation/gaps.json"
+    },
+    {
+      "cve_id": "CVE-2016-9083",
+      "pair_id": "pairvul:CWE-119:1137",
+      "cwe": "CWE-119",
+      "function": "vfio_pci_ioctl",
+      "fix_guard": "if (hdr.start >= max || hdr.start + hdr.count > max)",
+      "status": "gap",
+      "gap_reason_ref": "guard-validation/gaps.json"
+    },
+    {
+      "cve_id": "CVE-2020-10742",
+      "pair_id": "pairvul:CWE-787:2409",
+      "cwe": "CWE-787",
+      "function": "ll_free_user_pages",
+      "status": "gap",
+      "gap_reason_ref": "guard-validation/gaps.json"
+    },
+    {
+      "cve_id": "CVE-2016-9755",
+      "pair_id": "pairvul:CWE-787:1162",
+      "cwe": "CWE-787",
+      "function": "nf_ct_frag6_gather",
+      "status": "gap",
+      "gap_reason_ref": "guard-validation/gaps.json"
+    },
+    {
+      "cve_id": "CVE-2015-5327",
+      "pair_id": "pairvul:CWE-125:776",
+      "cwe": "CWE-125",
+      "function": "x509_decode_time",
+      "status": "gap",
+      "gap_reason_ref": "guard-validation/gaps.json"
+    },
+    {
+      "cve_id": "CVE-2017-8067",
+      "pair_id": "pairvul:CWE-787:1541",
+      "cwe": "CWE-787",
+      "function": "put_chars",
+      "status": "gap",
+      "gap_reason_ref": "guard-validation/gaps.json"
+    }
   ],
   "pending_verifications": [
     "get_pipe (1349) 源码已核对：before/after 与冻结记录 body_match=true；commit 标题已确认（usbip: fix stub_rx: get_pipe() to validate endpoint number），精确 hash 待 git 确认",

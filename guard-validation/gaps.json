@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "note": "按「可追溯提交 + 函数对齐 + 可重放」逐项筛候选；以下候选无法干净重放为 before/after/ineffective-01/equivalent-01 四变体，记为缺口，不凑数。每个缺口都保留 pair_id，供后续补齐。",
+  "gaps": [
+    {
+      "cve_id": "CVE-2019-0149",
+      "pair_id": "pairvul:CWE-20:1880",
+      "cwe": "CWE-20",
+      "function": "i40e_vc_config_queues_msg",
+      "fix_guard": "if (idx >= ARRAY_SIZE(vf->ch))",
+      "reason": "越界读 vf->ch[idx] 的下标 idx 在循环内由 ADQ 通道状态（num_tc / ch[].num_qps / 未初始化通道）驱动，不是单一攻击者可控数组下标；干净触发需重建 i40e ADQ 通道配置逻辑，无法用简单输入直接重放到 idx 越界。",
+      "tractability": "低"
+    },
+    {
+      "cve_id": "CVE-2013-1772",
+      "pair_id": "pairvul:CWE-119:171",
+      "cwe": "CWE-119",
+      "function": "console_unlock",
+      "fix_guard": "if (len+1 >= sizeof(text))",
+      "reason": "补丁是一次大重构（代码 1304→1725 字符，日志缓冲 len/text 处理重排），不是单一的数组边界检查；无法逐字抽取一个等价于 before/after 的函数体做四变体。",
+      "tractability": "低"
+    },
+    {
+      "cve_id": "CVE-2021-38201",
+      "pair_id": "pairvul:CWE-119:3075",
+      "cwe": "CWE-119",
+      "function": "xdr_set_page_base",
+      "fix_guard": "if (base >= maxlen)",
+      "reason": "补丁把越界情况从「clamp 到 maxlen」改为「返回错误」，是语义变化而非单纯数组边界；before/after 的等价性与 ineffective 变体无法在单函数层面干净构造。",
+      "tractability": "低"
+    },
+    {
+      "cve_id": "CVE-2016-9083",
+      "pair_id": "pairvul:CWE-119:1137",
+      "cwe": "CWE-119/CWE-190",
+      "function": "vfio_pci_ioctl",
+      "fix_guard": "if (hdr.count >= (U32_MAX - hdr.start))",
+      "reason": "函数体 10344→10472 字符，核心新增是整数溢出（CWE-190，U32_MAX 回绕）检查并重排 size/max，不是单一数组下标；四变体抽取与重放成本过高且易失真。",
+      "tractability": "低"
+    },
+    {
+      "cve_id": "CVE-2020-10742",
+      "pair_id": "pairvul:CWE-787:2409",
+      "cwe": "CWE-787",
+      "function": "ll_free_user_pages",
+      "fix_guard": null,
+      "reason": "补丁是「删除 pages[i]==NULL 的 break」+「OBD_FREE_LARGE→kvfree」，属内存管理/UAF 语义修复，不是数组边界检查；不适合四变体边界重放。",
+      "tractability": "低"
+    },
+    {
+      "cve_id": "CVE-2016-9755",
+      "pair_id": "pairvul:CWE-787:1162",
+      "cwe": "CWE-787",
+      "function": "nf_ct_frag6_gather",
+      "fix_guard": null,
+      "reason": "补丁把两处 return -EINVAL 改为 return 0（静默丢弃报文），是错误码/控制流语义变化，不是数组边界检查；无法映射到 before/after/ineffective/equivalent 四类。",
+      "tractability": "低"
+    },
+    {
+      "cve_id": "CVE-2015-5327",
+      "pair_id": "pairvul:CWE-125:776",
+      "cwe": "CWE-125",
+      "function": "x509_decode_time",
+      "fix_guard": "if (mon < 1 || mon > 12) 前移",
+      "reason": "越界读 month_lengths[mon] 是函数内 static const 数组，函数体用 GNU 语句表达式宏（dec2bin/DD2bin，tcc 支持不确定），且 mon→mon-1 索引改动使四变体等价性复杂；函数作用域的 static const 数组难以干净加 canary 观察越界读。",
+      "tractability": "中低"
+    },
+    {
+      "cve_id": "CVE-2017-8067",
+      "pair_id": "pairvul:CWE-787:1541",
+      "cwe": "CWE-787",
+      "function": "put_chars",
+      "fix_guard": null,
+      "reason": "补丁是把 sg_init_one(buf) 改为 kmemdup(data) + 发送后 kfree(data)，属缓冲区生命周期/拷贝语义修复，不是数组边界检查；不适合四变体边界重放。",
+      "tractability": "低"
+    }
+  ]
+}
