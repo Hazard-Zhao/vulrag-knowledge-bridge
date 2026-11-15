@@ -61,5 +61,26 @@
       "diff_note": "function renamed ftrace_syscall_exit -> ftrace_syscall_exit_after; body otherwise verbatim",
       "body_match_after_normalize": true
     }
+  },
+  {
+    "pair_id": "pairvul:CWE-125:2660",
+    "cve_id": "CVE-2020-28915",
+    "cwe": "CWE-125",
+    "before": {
+      "original_snippet_sha256": "a95e51bd983e28a7f0d21a38758bdc04f7a3bd7f9f9ea2978240cfd096fc8a3e",
+      "extracted_file_sha256": "409260d280d79f66660bc14e22c5ef79a51a6de71faf24421f538d8409620585",
+      "original_function_name": "fbcon_get_font",
+      "renamed_function_name": "fbcon_get_font_before",
+      "diff_note": "function renamed fbcon_get_font -> fbcon_get_font_before; body otherwise verbatim",
+      "body_match_after_normalize": true
+    },
+    "after": {
+      "original_snippet_sha256": "6e6ce28dd0d4a15345c6dcafcecc6f259a732d7091809f9305939add94e52885",
+      "extracted_file_sha256": "feaf1a89131f904fa5e8aeb4861be5cec31bf8931ac248e86b6b669c51b673d2",
+      "original_function_name": "fbcon_get_font",
+      "renamed_function_name": "fbcon_get_font_after",
+      "diff_note": "function renamed fbcon_get_font -> fbcon_get_font_after; body otherwise verbatim",
+      "body_match_after_normalize": true
+    }
   }
 ]

@@ -1,0 +1,9 @@
+BUILD
+
+EXECUTION hi_font=0
+VARIANT=before HI_FONT=0 CHARCOUNT=256 RET=0 OOB_READ=0 CANARY_INTACT=1
+[before/hi_font=0] charcount=256 ret=0 oob_read=0 canary_intact=1
+
+EXECUTION hi_font=1
+VARIANT=before HI_FONT=1 CHARCOUNT=512 RET=0 OOB_READ=1 CANARY_INTACT=1
+[before/hi_font=1] charcount=512 ret=0 oob_read=1 canary_intact=1

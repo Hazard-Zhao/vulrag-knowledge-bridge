@@ -1,0 +1,15 @@
+{
+  "pair_id": "pairvul:CWE-125:2660",
+  "cve_id": "CVE-2020-28915",
+  "cwe": ["CWE-125"],
+  "function": "fbcon_get_font",
+  "file": "drivers/video/fbdev/core/fbcon.c",
+  "fix_commit_title": "fbcon: Fix out-of-bounds read in fbcon_get_font",
+  "before_commit": "upstream parent of the fix (traceable via the CVE-2020-28915 patch); exact hash pending verification",
+  "after_commit": "CID-6735b4632def (commit-id prefix from the CVE description); full hash pending verification",
+  "fntsize_note": "FNTSIZE(fontdata) stubbed to the harness buffer size (4096) for the unit replay; the real kernel computes it from the font header",
+  "cases": [
+    {"id": "valid-256", "hi_font": 0, "note": "charcount=256, 256*16=4096=FNTSIZE: every variant copies in-bounds, no OOB read"},
+    {"id": "oob-512", "hi_font": 1, "note": "charcount=512, 512*16=8192>FNTSIZE: before/ineffective read OOB, after/equivalent intercept"}
+  ]
+}

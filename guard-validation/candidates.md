@@ -6,7 +6,7 @@
 
 来源：PairVul（KnowledgeRAG4LLMVulD @ 38aa707，本机 `vul-rag-pilot/data/expansion/raw/CWE-*_testset.json`）；case 158 来自 RAG4SVD PrimeVul（单独来源）。
 
-## 已核验（4 个 CVE）
+## 已核验（5 个 CVE）
 
 | CVE | pair_id | 函数 | 已重放变体 | 主要入集版本（类别） |
 |---|---|---|---|---|
@@ -14,6 +14,7 @@
 | CVE-2021-37576 | pairvul:CWE-787:3058 | kvmppc_rtas_hcall | 四变体 | ineffective-01（③无效保护） |
 | CVE-2017-16912 | pairvul:CWE-125:1349 | get_pipe | 四变体 | ineffective-01（③无效保护） |
 | CVE-2014-7825 | pairvul:CWE-125:589 | ftrace_syscall_exit | 四变体 | before（①原始漏洞版） |
+| CVE-2020-28915 | pairvul:CWE-125:2660 | fbcon_get_font | 四变体 | ineffective-01（③无效保护） |
 
 其余变体（after/equivalent-01/before 等）保留在各自 CVE 组内作对照，不计入对应类别数量。
 
@@ -25,7 +26,6 @@
 | i40e_vc_config_queues_msg | pairvul:CWE-20:1880 | `if (idx >= ARRAY_SIZE(vf->ch))` | 待筛 |
 | kvm_vm_ioctl_create_vcpu | pairvul:CWE-20:332 | `if (id >= KVM_MAX_VCPUS)` | 待筛 |
 | console_unlock | pairvul:CWE-119:171 | `if (len+1 >= sizeof(text))` | 待筛 |
-| fbcon_get_font | pairvul:CWE-125:2660 | `if (charcount * j > FNTSIZE(fontdata))` | 待筛 |
 | xdr_set_page_base | pairvul:CWE-119:3075 | `if (base >= maxlen)` | 待筛 |
 | vfio_pci_ioctl | pairvul:CWE-119:1137 | `if (hdr.start >= max \|\| hdr.start + hdr.count > max)` | 待筛 |
 | ll_free_user_pages | pairvul:CWE-787:2409 | — | 待筛 |
