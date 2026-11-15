@@ -1,0 +1,13 @@
+BUILD
+
+EXECUTION nent=3
+VARIANT=equivalent-01 NENT=3 RET=0 INNER_CALLED=1 WRITE_INDEX=3 OOB_WRITE=0 CANARY_CHANGED=0
+[equivalent-01/nent=3] ret=0 inner_called=1 write_index=3 oob_write=0 canary_changed=0
+
+EXECUTION nent=4
+VARIANT=equivalent-01 NENT=4 RET=-7 INNER_CALLED=0 WRITE_INDEX=-1 OOB_WRITE=0 CANARY_CHANGED=0
+[equivalent-01/nent=4] ret=-7 inner_called=0 write_index=-1 oob_write=0 canary_changed=0
+
+EXECUTION nent=5
+VARIANT=equivalent-01 NENT=5 RET=-7 INNER_CALLED=0 WRITE_INDEX=-1 OOB_WRITE=0 CANARY_CHANGED=0
+[equivalent-01/nent=5] ret=-7 inner_called=0 write_index=-1 oob_write=0 canary_changed=0

@@ -19,3 +19,5 @@
 !guard-validation/cases/589/logs/*.log
 !guard-validation/cases/2660/logs/
 !guard-validation/cases/2660/logs/*.log
+!guard-validation/cases/2191/logs/
+!guard-validation/cases/2191/logs/*.log

@@ -82,5 +82,26 @@
       "diff_note": "function renamed fbcon_get_font -> fbcon_get_font_after; body otherwise verbatim",
       "body_match_after_normalize": true
     }
+  },
+  {
+    "pair_id": "pairvul:CWE-787:2191",
+    "cve_id": "CVE-2019-19332",
+    "cwe": "CWE-787",
+    "before": {
+      "original_snippet_sha256": "268f771bcf128084a2b03e335bf74ecdc4016b416849fde284cc2cc7e3c49e67",
+      "extracted_file_sha256": "529741c1aba8991dc536606a5d6b69e3b5c0e01da13353c4a304433a08491c1f",
+      "original_function_name": "do_cpuid_func",
+      "renamed_function_name": "do_cpuid_func_before",
+      "diff_note": "function renamed do_cpuid_func -> do_cpuid_func_before; body otherwise verbatim",
+      "body_match_after_normalize": true
+    },
+    "after": {
+      "original_snippet_sha256": "8a5acd8bec6600bdd7ea8906df8bcf61aa0474fa33dd8814be133db484c23020",
+      "extracted_file_sha256": "4affb43472c1f90f207c15b59f0f00b64db84f46a3b8386a5111ab1f6df4ff46",
+      "original_function_name": "do_cpuid_func",
+      "renamed_function_name": "do_cpuid_func_after",
+      "diff_note": "function renamed do_cpuid_func -> do_cpuid_func_after; body otherwise verbatim",
+      "body_match_after_normalize": true
+    }
   }
 ]

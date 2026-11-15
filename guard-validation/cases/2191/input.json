@@ -1,0 +1,16 @@
+{
+  "pair_id": "pairvul:CWE-787:2191",
+  "cve_id": "CVE-2019-19332",
+  "cwe": ["CWE-787"],
+  "function": "do_cpuid_func",
+  "file": "arch/x86/kvm/cpuid.c",
+  "fix_commit_title": "KVM: x86: do_cpuid_func: check nent against maxnent to avoid OOB write",
+  "before_commit": "upstream parent of the fix (traceable via the CVE-2019-19332 patch); exact hash pending verification",
+  "after_commit": "pending verification",
+  "oob_note": "The actual OOB write lives in __do_cpuid_func/__do_cpuid_func_emulated (entry[(*nent)++]); do_cpuid_func is the front gate whose missing *nent>=maxnent check lets the callee write entry[maxnent]. The harness stubs the callees to perform that write and observes the index.",
+  "cases": [
+    {"id": "valid-3", "nent": 3, "note": "*nent=3 < maxnent=4: every variant writes entry[3] in-bounds, no OOB"},
+    {"id": "full-4", "nent": 4, "note": "*nent=4 == maxnent: before/ineffective delegate and write entry[4] OOB; after/equivalent return -E2BIG"},
+    {"id": "over-5", "nent": 5, "note": "*nent=5 > maxnent: before writes entry[5] OOB; after/ineffective/equivalent reject"}
+  ]
+}
